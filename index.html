@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angle - Makanan Herbal Alami</title>
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header dan Navigasi */
+        header {
+            background-color: #D2691E; /* Warna jahe */
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            height: 40px; /* Sesuaikan tinggi logo */
+        }
+        .logo img {
+            height: 100%;
+            width: auto;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FFD700; /* Warna lemon */
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #D2691E, #FFD700);
+            color: #fff;
+            padding: 150px 0 100px;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: #fff;
+            color: #D2691E;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #FFD700;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            animation: slideUp 1s ease-in;
+        }
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #D2691E;
+            font-weight: bold;
+        }
+        section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Tentang Brand */
+        .about {
+            background-color: #fff;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text p {
+            text-align: justify;
+        }
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Produk */
+        .products {
+            background-color: #f9f9f9;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .product-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #D2691E;
+        }
+        .product-card .highlights {
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        /* Visi & Misi */
+        .vision-mission {
+            background-color: #fff;
+        }
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .vm-item {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .vm-item h3 {
+            font-size: 24px;
+            color: #D2691E;
+            margin-bottom: 15px;
+        }
+
+        /* Keunggulan */
+        .advantages {
+            background-color: #f9f9f9;
+        }
+        .advantages-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .advantage-item {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .advantage-item h3 {
+            font-size: 20px;
+            color: #D2691E;
+            margin-bottom: 10px;
+        }
+
+        /* Testimoni */
+        .testimonials {
+            background-color: #fff;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .testimonial-card .author {
+            font-weight: bold;
+            color: #D2691E;
+        }
+
+        /* Kontak */
+        .contact {
+            background-color: #f9f9f9;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .contact-info {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .contact-info h3 {
+            font-size: 24px;
+            color: #D2691E;
+            margin-bottom: 15px;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        .contact-form {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #D2691E;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .contact-form button:hover {
+            background-color: #FFD700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #D2691E;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: #D2691E;
+                width: 200px;
+                padding: 20px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .vm-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="c:\Users\ADVAN WORKPLUS\Downloads\290505639_555501052890661_4203102561122440503_n.jpg" alt="Logo Anglu">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#vision-mission">Visi & Misi</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>ANGLU - Anget Nengu Gulu</h1>
+            <p>Perpaduan sempurna antara hangatnya jahe dan segarnya lemon, diciptakan untuk memberi kenyamanan dalam setiap konsumsi.</p>
+            <a href="#products" class="btn">Jelajahi Produk</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>TENTANG ANGLU</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Anglu merupakan sebuah usaha UMKM jahe&lemon yang berawal dari sebuah produk rumahan yang dibuat untuk konsumsi pribadi. Didirikan pada Juli 2022, Berkat respons positif dari para tetangga dan lingkungan sekitar, produk tersebut akhirnya mulai dipasarkan dan berkembang menjadi usaha yang lebih serius.</p>
+                    <p>Seiring meningkatnya permintaan, kami mulai mengurus berbagai legalitas termasuk sertifikasi dan perizinan BPOM untuk memastikan setiap produk aman, berkualitas, dan memenuhi standar industri.</p>
+                    <p>Produk kami dibuat berdasarkan resep dokter dan diracik dari jahe berkualitas yang dihasilkan oleh keluarga. Dengan dukungan reseller serta integrasi ke berbagai platform e-commerce, produk kami kini dapat dijangkau oleh pelanggan di berbagai daerah.</p>
+                    <p>Komitmen kami sederhana: menghadirkan produk jahe berkualitas, aman, dan bermanfaat, sekaligus mendukung pertumbuhan UMKM lokal. Dengan harga yang terjangkau dan kualitas yang konsisten, kami berupaya menjadi pilihan masyarakat untuk produk herbal yang sehat dan terpercaya.</p>
+                </div>
+                <div class="about-image">
+                    <img src="c:\Users\ADVAN WORKPLUS\Downloads\IMG_4364.png" alt="Gambar Brand AnglU">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2>PRODUK KAMI</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="c:\Users\ADVAN WORKPLUS\Downloads\IMG_4303.png" alt="Sirup Jahe Lemon">
+                    <h3>Sirup Jahe Lemon</h3>
+                    <p class="highlights">Keunggulan: Antioksidan tinggi, Meningkatkan imunitas</p>
+                    <p>Sirup ini memiliki rasa unik, perpadduan jahe dengan lemon. setiap tegukan memberikan sensasi hangat dan segar. Bisa diseduh dengan air hangat/panas atau es/dingin.</p>
+                </div>
+                <div class="product-card">
+                    <img src="c:\Users\ADVAN WORKPLUS\Downloads\IMG_4347.png" alt="Manisan Jahe Lemon">
+                    <h3>Manisan Jahe Lemon - Kemasan Pouch</h3>
+                    <p class="highlights">Keunggulan: Alami 100%, Mudah dikonsumsi</p>
+                    <p>dibuat dari bahan alami pilihan dan diproses secara higienis menggunakan mesin pengering makanan untuk menjaga nutrisi dan khasiat jahe. Praktis mudah dibawa kemana mana.</p>
+                </div>
+                <div class="product-card">
+                    <img src="c:\Users\ADVAN WORKPLUS\Downloads\DSC08116.png" alt="manisan jahe lemon">
+                    <h3>Manisan Jahe Lemon - Kemasan Pot Aluminium isi 25Gr</h3>
+                    <p class="highlights">Keunggulan: Vitamin C tinggi, Detoksifikasi</p>
+                    <p>Manisan Jahe yang cukup untuk dinikmati sebagai cemilan atau tambahan rasa pada makanan, cocok dinikmati kapan saja.</p>
+                </div>
+                <div class="product-card">
+                    <img src="c:\Users\ADVAN WORKPLUS\Downloads\IMG_4282.png" alt="manisan jahe lemon">
+                    <h3>Manisan Jahe Lemon - Kemasan Ulir 100Gr</h3>
+                    <p class="highlights">Keunggulan: Kombinasi optimal, Energi alami</p>
+                    <p>Rasa Segar dan lezat cocok untuk cemilan praktis, dibuat dari bahan alami [ilihan dan diproses secara higienis menggunakan pengering makanan untuk menjaga nutrisi dan khasiat jahe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision-mission" class="vision-mission">
+        <div class="container">
+            <h2>VISI & MISI ANGLU</h2>
+            <div class="vm-grid">
+                <div class="vm-item">
+                    <h3>Visi</h3>
+                    <p></p>
+                </div>
+                <div class="vm-item">
+                    <h3>Misi</h3>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages">
+        <div class="container">
+            <h2>KEUNGGULAN ANGLU</h2>
+            <div class="advantages-list">
+                <div class="advantage-item">
+                    <h3>Kualitas Tinggi</h3>
+                    <p>Kami hanya menggunakan bahan-bahan organik pilihan untuk memastikan setiap produk memenuhi standar kesehatan tertinggi.</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>Inovasi Berkelanjutan</h3>
+                    <p>Tim kami terus berinovasi untuk menciptakan produk baru yang menggabungkan tradisi herbal dengan teknologi modern.</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>Keamanan Terjamin</h3>
+                    <p>Setiap produk melalui pengujian ketat untuk memastikan keamanan dan efektivitas, tanpa bahan kimia berbahaya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>TESTIMONI PELANGGAN</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Teh Jahe Lemon dari Angle benar-benar menyegarkan dan membantu saya tetap sehat selama musim flu. Sangat direkomendasikan!"</p>
+                    <p class="author">- Sari, Jakarta</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Suplemen herbalnya mudah diminum dan saya merasakan peningkatan energi sehari-hari. Produk alami yang berkualitas."</p>
+                    <p class="author">- Budi, Surabaya</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Jus Lemon Herbal sangat membantu detoksifikasi tubuh saya. Rasa alami dan manfaatnya luar biasa."</p>
+                    <p class="author">- Lina, Bandung</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>KONTAK & LOKASI</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <p><strong>Alamat:</strong> Perumahan Jl. Gabus I No.3, Mladangan, Minomartani, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581</p>
+                    <p><strong>Email:</strong> anglujogja@gmail.com</p>
+                    <p><strong>Nomor WA:</strong> +62 812-2735-544</p>
+                    <p
